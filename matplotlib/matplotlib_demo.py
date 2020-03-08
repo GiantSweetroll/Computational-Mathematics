@@ -23,6 +23,14 @@ z = np.cos(x)
 ax1.plot(x, y, '-o', label = 'sin(x)', markersize = 10)
 ax1.plot(x, z, '--s', label = 'cos(x)')
 
+ax2.plot(z, y+1)
+ax2.plot(y, z)
+for i in range(10):
+    ax2.plot(y, z-i)
+
+for i in range(10):
+    ax3.plot(x, y*np.exp(-z)-i)
+
 #Set labels
 ax1.set_xlabel('x')
 ax1.set_ylabel('y')
