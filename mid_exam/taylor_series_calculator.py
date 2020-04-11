@@ -23,12 +23,12 @@ def calc_taylor_series(equation, xInit, a, n:int):
         
     #Calculate derivatives
     for i in range(len(derivatives)):
-        derivatives[i] = derivatives[i].evalf(subs={x: xVal})
+        derivatives[i] = derivatives[i].evalf(subs={x: a})
         
     #Calculate series
     result = 0
     for i in range(len(derivatives)):
-        result += (derivatives[i] * (a-xVal)**i)/sp.factorial(i)
+        result += (derivatives[i] * (xVal - a)**i)/sp.factorial(i)
         
     return result
 

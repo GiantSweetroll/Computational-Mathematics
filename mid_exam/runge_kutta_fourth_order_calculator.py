@@ -19,7 +19,7 @@ def get_4th_order_rungekutta(dydx, x0, y0, n:int, h, x = sp.Symbol('x'), y = sp.
         xOld = sets[i-1][0]
         yOld = sets[i-1][1]
         k1 = dydx.evalf(subs={x:xOld, y:yOld})
-        k2 = dydx.evalf(subs={x:xOld + h/2, y:yOld + k1/2})
+        k2 = dydx.evalf(subs={x:xOld + h/2, y:yOld + h*k1/2})
         k3 = dydx.evalf(subs={x:xOld + h/2, y:yOld + h*k2/2})
         k4 = dydx.evalf(subs={x:xOld + h, y:yOld + k3 * h})
         

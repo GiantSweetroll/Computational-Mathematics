@@ -12,19 +12,20 @@ def simpson_rule(equation, a, b, n):
     n: no of segments
     """
     
-    h = abs(b-a)/n
+    h = (b-a)/n
     x = sp.Symbol('x')
     xVal = a
     
     result = 0
     #First segment
     result += equation.evalf(subs={x:xVal})
+    xVal += h
     #Other segments
-    for i in range(1, n):
-        if (i == n-1):  #If last segment
+    for i in range(1, n+1):
+        if (i == n):  #If last segment
             result += equation.evalf(subs={x:xVal})
         else:
-            if (i % 2 == 2):
+            if (i % 2 != 0):
                 result += equation.evalf(subs={x:xVal}) * 4
             else:
                 result += equation.evalf(subs={x:xVal}) * 2
@@ -45,22 +46,23 @@ def trapezoid_rule(equation, a, b, n):
     n: no of segments
     """
     
-    h = abs(b-a)/n
+    h = (b-a)/n
     x = sp.Symbol('x')
     xVal = a
     
     result = 0
     #First segment
     result += equation.evalf(subs={x:xVal})
+    xVal += h
     #Other segments
-    for i in range(1, n):
-        if (i == n-1):  #If last segment
+    for i in range(1, n+1):
+        if (i == n):  #If last segment
             result += equation.evalf(subs={x:xVal})
         else:
-            result += equation.evalf(subs={x:xVal}) * 2
+            result += 2 * equation.evalf(subs={x:xVal})
         xVal += h
     
-    result *= h/2
+    result *= (h/2)
     
     return result
 
