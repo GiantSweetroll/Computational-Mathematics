@@ -1,5 +1,7 @@
-import sympy as sp
 from pandas._libs import index
+
+import sympy as sp
+
 
 xy_values = []
 
@@ -12,7 +14,7 @@ xy_values.append([22.5, 602.97])
 xy_values.append([30, 901.67])
 
 #Order of polynomial
-n = 1       #Linear
+n = 2       #Linear
 
 #Value of x to find
 xVal = 16
@@ -23,7 +25,27 @@ for i in range(len(xy_values)-1):
     if xy_values[i][0] < xVal and xy_values[i+1][0] > xVal:
         indexes.append(i)
         indexes.append(i+1)
+
+#Find the other data points when n>1
+center = [indexes[0], indexes[1]]
+for i in range(n-1):
+    #find the value nearest to xVal
+    leftIndex = indexes[0]-1
+    rightIndex = indexes[len(indexes)-1] + 1
+    #Check if the adjacent index exists in the given xy_values data
+    if (leftIndex > -1):
+        if (rightIndex < len(xy_values)):
+            #Check which one is closer to xVal
+            if (abs(xy_values[leftIndex][0] - xVal) < abs(xy_values[rightIndex][0] - xVal)):
+                indexes.insert(0, leftIndex)
+            else:
+                indexes.append(rightIndex)
+        else:
+            indexes.insert(0, leftIndex)
+    elif (rightIndex < len(xy_values)):
+        indexes.append(rightIndex)
         
+                
 #Find the weighting functions
 t = sp.Symbol('t');
 wFunc = []      #Collection of Ln(t)
