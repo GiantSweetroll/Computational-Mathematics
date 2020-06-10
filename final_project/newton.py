@@ -3,13 +3,12 @@ import matplotlib.pyplot as plt
 
 xy_values = []
 
-#Initialize x and y values
-xy_values.append([-4, -53])
-xy_values.append([-2, -1])
-xy_values.append([-1, 4])
-xy_values.append([1, 2])
-xy_values.append([3, 24])
-xy_values.append([4, 59])
+#Initialize x and y values (make sure the X values are in order)
+xy_values.append([0, 0])
+xy_values.append([10, 227.04])
+xy_values.append([15, 362.78])
+xy_values.append([20, 517.35])
+xy_values.append([22.5, 602.97])
 
 #Initialize divided difference table
 table = []
@@ -68,15 +67,14 @@ for i in range(len(xy_values)):
 #Generate x and y
 new_x_values = []
 new_y_values = []
-for i in range(min(x_values) * 1000, max(x_values) * 1000, 1):
-    new_x_values.append(i/1000)
-    new_y_values.append(func.evalf(subs={x:i/1000}))
+for i in range(int(min(x_values) * 100), int(max(x_values) * 100), 1):
+    new_x_values.append(i/100)
+    new_y_values.append(func.evalf(subs={x:i/100}))
     
 plt.plot(x_values, y_values, 'o', label='data')
 plt.plot(new_x_values, new_y_values, '-', label='equation')
 plt.legend()
 plt.xlabel("X")
 plt.ylabel("Y")
-plt.text(-2, 30, "y = " + str(func))
 
 plt.show()
