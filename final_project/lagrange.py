@@ -96,7 +96,6 @@ xVal = 16 #Value of x to find
 indexes = get_first2_indexes(xy_values, xVal)
 get_remaining_indexes(xy_values, indexes, xVal, n)
 wFunc = gather_weighting_functions(n)
-print(wFunc)
 equation = get_equation(xy_values, wFunc, indexes, x)
 result = equation.evalf(subs={x : xVal})
 print("result =", result) 
