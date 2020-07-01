@@ -95,4 +95,29 @@ def graph_newton(xy_values, func, x_symb):
     plt.ylabel("Y")
     
     plt.show()
+    
+def graph_newton_with_interpolation(xy_values, func, x_symb, xVal, yVal):
+    #split n and y
+    x_values = []
+    y_values = []
+    
+    for i in range(len(xy_values)):
+        x_values.append(xy_values[i][0])
+        y_values.append(xy_values[i][1])
+    
+    #Generate x and y
+    new_x_values = []
+    new_y_values = []
+    for i in range(int(min(x_values) * 100), int(max(x_values) * 100), 1):
+        new_x_values.append(i/100)
+        new_y_values.append(func.evalf(subs={x_symb:i/100}))
+        
+    plt.plot(x_values, y_values, 'o', label='data')
+    plt.plot(new_x_values, new_y_values, '-', label='equation')
+    plt.plot([xVal], [yVal], '+', label="interpolated data")
+    plt.legend()
+    plt.xlabel("X")
+    plt.ylabel("Y")
+    
+    plt.show()    
 graph_newton(xy_values, func, x)
